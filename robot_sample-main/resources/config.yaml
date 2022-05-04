@@ -1,0 +1,5 @@
+url: http://a.testaddressbook.com/sign_in
+browser: chrome
+username: a@a.com
+password: a
+invalid_password: b
