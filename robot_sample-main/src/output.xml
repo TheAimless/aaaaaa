@@ -1,37 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.10.4 on win32)" generated="20220407 15:57:28.028" rpa="false" schemaversion="2">
-<suite id="s1" name="Test" source="C:\Users\DELL\project\robot_sample-main\src\test.robot">
-<test id="s1-t1" name="My First Robot Test">
+<robot generator="Robot 4.1.3 (Python 3.10.4 on win32)" generated="20220509 11:40:42.457" rpa="false" schemaversion="2">
+<suite id="s1" name="Sample 2" source="C:\Users\DELL\project\robot_sample-main\testcases\sample 2">
+<suite id="s1-s1" name="Test Copy" source="C:\Users\DELL\project\robot_sample-main\testcases\sample 2\test copy.robot">
+<test id="s1-s1-t1" name="SP51 - Login My Store">
 <kw name="Log To Console" library="BuiltIn">
 <arg>Hello Robot World!</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220407 15:57:28.050" endtime="20220407 15:57:28.050"/>
+<status status="PASS" starttime="20220509 11:40:42.494" endtime="20220509 11:40:42.494"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>1</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220407 15:57:28.051" endtime="20220407 15:57:28.051"/>
+<status status="PASS" starttime="20220509 11:40:42.495" endtime="20220509 11:40:42.495"/>
 </kw>
-<status status="PASS" starttime="20220407 15:57:28.050" endtime="20220407 15:57:28.051"/>
+<status status="PASS" starttime="20220509 11:40:42.493" endtime="20220509 11:40:42.495"/>
 </test>
-<test id="s1-t2" name="My Second Robot Test">
+<test id="s1-s1-t2" name="SP52 - T2">
 <kw name="Log To Console" library="BuiltIn">
 <arg>2</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220407 15:57:28.052" endtime="20220407 15:57:28.052"/>
+<status status="PASS" starttime="20220509 11:40:42.496" endtime="20220509 11:40:42.497"/>
 </kw>
-<status status="PASS" starttime="20220407 15:57:28.051" endtime="20220407 15:57:28.052"/>
+<status status="PASS" starttime="20220509 11:40:42.496" endtime="20220509 11:40:42.497"/>
 </test>
-<status status="PASS" starttime="20220407 15:57:28.029" endtime="20220407 15:57:28.053"/>
+<test id="s1-s1-t3" name="SP53 - T3">
+<kw name="Log To Console" library="BuiltIn">
+<arg>3</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220509 11:40:42.498" endtime="20220509 11:40:42.498"/>
+</kw>
+<status status="PASS" starttime="20220509 11:40:42.498" endtime="20220509 11:40:42.498"/>
+</test>
+<status status="PASS" starttime="20220509 11:40:42.488" endtime="20220509 11:40:42.499"/>
+</suite>
+<suite id="s1-s2" name="Test" source="C:\Users\DELL\project\robot_sample-main\testcases\sample 2\test.robot">
+<test id="s1-s2-t1" name="SP1 - Login My Store">
+<kw name="Log To Console" library="BuiltIn">
+<arg>Hello Robot World!</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220509 11:40:42.504" endtime="20220509 11:40:42.504"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>1</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220509 11:40:42.504" endtime="20220509 11:40:42.505"/>
+</kw>
+<status status="PASS" starttime="20220509 11:40:42.503" endtime="20220509 11:40:42.505"/>
+</test>
+<test id="s1-s2-t2" name="SP2 - TestCase">
+<kw name="Log To Console" library="BuiltIn">
+<arg>2</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220509 11:40:42.506" endtime="20220509 11:40:42.506"/>
+</kw>
+<status status="PASS" starttime="20220509 11:40:42.506" endtime="20220509 11:40:42.507"/>
+</test>
+<status status="PASS" starttime="20220509 11:40:42.501" endtime="20220509 11:40:42.507"/>
+</suite>
+<status status="PASS" starttime="20220509 11:40:42.457" endtime="20220509 11:40:42.508"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0" skip="0">All Tests</stat>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="2" fail="0" skip="0" id="s1" name="Test">Test</stat>
+<stat pass="5" fail="0" skip="0" id="s1" name="Sample 2">Sample 2</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1" name="Test Copy">Sample 2.Test Copy</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s2" name="Test">Sample 2.Test</stat>
 </suite>
 </statistics>
 <errors>

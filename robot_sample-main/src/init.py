@@ -1,10 +1,32 @@
 from __future__ import print_function
+from tkinter import W
 from testlink import TestlinkAPIClient, TestlinkAPIGeneric, TestLinkHelper
 import testlink
 import csv
 from testlink.testlinkerrors import TLResponseError
-import sys, os.path
+import sys, os
 from platform import python_version
+from bs4 import BeautifulSoup
+
+#Variables:
+testprojectname = "SampleProject"
+testplanname = "Sample Testplan"
+robotfilename = "test.robot"
+folder = f'{"sample 2"}'
+ts_name = [f'{"Sample Test Suite"}', f'{"sample 2"}']
+cur_build = "7"
+prefix = "SP" 
+
+def get_status(tcname):
+    with open('output.xml', 'r') as f:
+        data = f.read()
+
+    bs_data = BeautifulSoup(data, 'xml')
+    x = bs_data.find('test', {'name': tcname})
+    y = x.find_all('status')[-1]
+    z = 'p' if y.get('status') == 'PASS' else 'f'
+    #print(z)
+    return z
 
 temp = ""
 with open('website_details.txt', 'r') as file_web:
@@ -30,60 +52,28 @@ except:
     SERVER_URL = BASE_URL + API_NAME
 
 tlink = tl_helper.connect(TestlinkAPIClient)
-for i in tlink.getProjects():
-    print(i)
-    print("")
+gen_cmd = f'robot "../testcases/{folder}"'
 
-#print(tlink.getProjectTestPlans(1969))
-#print(tlink.getTestSuitesForTestPlan(1990))
-#print("")
-#for i in tlink.getTestCasesForTestSuite(1991, True, 'full'):
-#    print(i) 
-"""
-py_ver = python_version()
-py_ver_short = py_ver.replace('.', '')[:2]
-myApiVersion='%s v%s' % (tlink.__class__.__name__ , tlink.__version__)
-this_file_dirname=os.path.dirname(__file__)
+os.system(gen_cmd)
+     
+testplanid = tlink.getTestPlanByName(testprojectname, testplanname)[0]['id']
+tplanid = tlink.getTestPlanByName(testprojectname, testplanname)[0]['id']
+tcases = []
+for i in ts_name:
+    tsuite = tlink.getTestSuite(i, prefix)[0]['id']
+    tc = tlink.getTestCasesForTestSuite(testsuiteid = tsuite, deep = True, details = 'simple', getkeywords = False)
+    tcases = tcases + tc
 
-print(tlink.connectionInfo())
-x, y = 'user', 'hieunm0701@gmail.com'
-
-def checkUser(name1, mail):
-    # checks if user NAME1_NAME2 exists
-        when not , user will be created
-              returns username + userid
-    
-    
-    login = "{}".format(name1)
-    mail = "{}".format(mail)
-    try:
-        response = tlink.getUserByLogin(login)
-        userID = response[0]['dbID']
-    except TLResponseError as tl_err:
-        if tl_err.code == 10000:
-            # Cannot Find User Login - create new user
-#            userID = tlink.
-            print('No user')
-        else:
-            # seems to be another response failure -  we forward it
-            raise   
-
-    return login, userID
-
-test_name, test_id = checkUser(x, y)
-print("checkuser", test_name, test_id)
-#response = tlink.getUserByLogin(x)
-#print("getUserByLogin", response)
-#myTestUserID=response[0]['dbID']
-#response = tlink.getUserByID(myTestUserID)
-#print("getUserByID   ", response)
-print("")
-print(tlink.whatArgs('assignTestCaseExecutionTask'))
-tlink.listProjects()
-"""
-#Update results from a *.csv file:
 para = ['testplanid', 'status','testcaseid', 'testcaseexternalid', 'buildid', 'buildname', 'platformid', 'platformname', 'notes', 'guess', 'bugid', 'customfields', 'overwrite', 'user', 'execduration', 'timestamp', 'steps']
-with open('results.csv', 'r') as file:
+for i in range(len(tcases)):
+    ex_id = tcases[i]['external_id']
+    temp = ex_id.replace("-", "")
+    status = get_status(f"{temp} - {tcases[i]['name']}")
+    row = [testplanid, status, None, ex_id, cur_build, None, None, None, None, None, None, None, None, None, None, None, None]
+    tlink.reportTCResult(**dict(zip(para, row)))
+
+#Update results from a *.csv file:
+"""with open('results.csv', 'r') as file:
     reader = csv.reader(file)
     count = 1
     for row in reader:
@@ -98,4 +88,4 @@ with open('results.csv', 'r') as file:
             except:
                 continue
         tlink.reportTCResult(**dict(zip(para, row)))
-    
+"""

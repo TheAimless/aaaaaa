@@ -1,8 +1,8 @@
 *** Test Cases ***
 
-My First Robot Test
+SP1 - Login My Store
     Log To Console            Hello Robot World!
     Log To Console            1
 
-My Second Robot Test
+SP2 - TestCase
     Log To Console            2
