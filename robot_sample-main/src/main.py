@@ -80,8 +80,6 @@ class APITlink():
                 if self.correctID != exID:
                     raise ExternalIDError(f"Robot file external ID ({exID}) does not match Testlink ID ({self.correctID} in {dir})")
 
-                self.tlink.addTestCaseToTestPlan(self.projectID, self.testPlanID, self.correctID, 
-                self.version)
 
             flag = False
             for i in self.tlink.getTestCaseIDByName(testcasename = testName, testsuitename = self.suiteName, testprojectname = self.testProjectName):
@@ -90,6 +88,8 @@ class APITlink():
                     break
             if not flag:
                 raise ExternalIDError(f"Robot file external ID ({exID}) does not exist in Testlink in {dir}") 
+            self.tlink.addTestCaseToTestPlan(self.projectID, self.testPlanID, exID, 
+            self.version)
             self.updateData = [self.testPlanID, testStatus, None, exID, self.curBuild, None, None, None, None, None, None, None, None, None, None, None, None]
             self.tlink.reportTCResult(**dict(zip(self.updateParam, self.updateData)))
             
