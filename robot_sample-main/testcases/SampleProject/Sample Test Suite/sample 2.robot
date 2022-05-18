@@ -9,3 +9,6 @@ SP52 - T2
 
 SP53 - T3
     Log To Console            3
+
+SP59 - T4
+    Log To Console            3

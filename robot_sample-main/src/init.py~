@@ -1,6 +1,0 @@
-import testlink
-
-BASE_URL = 'http://hieunmtestlink.hopto.org/testlink/'
-API_NAME = 'lib/api/xmlrpc/v1/xmlrpc.php'
-SERVER_URL = BASE_URL + API_NAME
-DEVKEY = 
